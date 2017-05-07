@@ -34,15 +34,7 @@ class NP_UpdateTime extends NucleusPlugin
 		return _UPDATETIME_DESCRIPTION;
 	}
 
-	function supportsFeature($what)
-	{
-		switch ($what) {
-			case 'SqlTablePrefix':
-				return 1;
-			default:
-				return 0;
-		}
-	}
+	function supportsFeature($what) {return in_array($what,array('SqlTablePrefix','SqlApi'));}
 
 	function getTableList()
 	{
@@ -203,7 +195,7 @@ class NP_UpdateTime extends NucleusPlugin
 		$query .= ' ORDER BY utime DESC'
 				. ' LIMIT 0, ' . intval($maxtoshow);
 		$res    = sql_query($query);
-		while ($row = mysql_fetch_object($res)) {
+		while ($row = sql_fetch_object($res)) {
 			$item =& $manager->getItem($row->up_id, 0, 0);
 			if ($item) {
 				$itemlink  = $this->createGlobalItemLink($item['itemid']);
@@ -237,7 +229,7 @@ class NP_UpdateTime extends NucleusPlugin
 			   . '     r.up_id = ' . intval($item->itemid)
 			   . ' and r.up_id = i.inumber';
 		$res   = sql_query($query);
-		if ($row = mysql_fetch_assoc($res)) {
+		if ($row = sql_fetch_assoc($res)) {
 //			$data['utime'] = date($this->getOption('DateFormat'), $row['updatetime']);
 			$data['utime'] = strftime($this->getOption('DateFormat'), $row['updatetime']);
 			if ($row['updatetime'] > $row['itemtime']) {
