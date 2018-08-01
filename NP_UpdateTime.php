@@ -34,7 +34,15 @@ class NP_UpdateTime extends NucleusPlugin
 		return _UPDATETIME_DESCRIPTION;
 	}
 
-	function supportsFeature($what) {return in_array($what,array('SqlTablePrefix','SqlApi'));}
+	function supportsFeature($what)
+	{
+		switch ($what) {
+			case 'SqlTablePrefix':
+				return 1;
+			default:
+				return 0;
+		}
+	}
 
 	function getTableList()
 	{
