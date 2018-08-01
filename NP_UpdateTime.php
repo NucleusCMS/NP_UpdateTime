@@ -107,12 +107,15 @@ class NP_UpdateTime extends NucleusPlugin
 		$updateOver = _UPDATETIME_OVERWRITE;
 		$recordOnly = _UPDATETIME_RECORDEONLY;
 		$noAction   = _UPDATETIME_NOACTION;
+		$flg0 = isset($checkedFlag[0]) ? $checkedFlag[0] : '';
+		$flg1 = isset($checkedFlag[1]) ? $checkedFlag[1] : '';
+		$flg2 = isset($checkedFlag[2]) ? $checkedFlag[2] : '';
 		$printData  = '<h3 style="margin-bottom:0;">' . $updateMode . "</h3>\n"
-					. '<input type="radio" name="updatetime" value="2" id="updatetime_2"' . $checkedFlag[2] . ' />'
+					. '<input type="radio" name="updatetime" value="2" id="updatetime_2"' . $flg2 . ' />'
 					. '<label for="updatetime_2">' . $updateOver . "</label><br />\n"
-					. '<input type="radio" name="updatetime" value="1" id="updatetime_1"' . $checkedFlag[1] . ' />'
+					. '<input type="radio" name="updatetime" value="1" id="updatetime_1"' . $flg1 . ' />'
 					. '<label for="updatetime_1">' . $recordOnly . "</label><br />\n"
-					. '<input type="radio" name="updatetime" value="0" id="updatetime_0"' . $checkedFlag[0] . ' />'
+					. '<input type="radio" name="updatetime" value="0" id="updatetime_0"' . $flg0 . ' />'
 					. '<label for="updatetime_0">' . $noAction . "</label><br />\n";
 		echo $printData;
 	}
